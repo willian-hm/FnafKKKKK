@@ -24,7 +24,7 @@ dialog{color:var(--paper);background:#101611;border:1px solid #7a8865;padding:30
 #game{overflow:clip}
 @container(max-width:900px){.menu-copy{top:18%}.eyebrow{font-size:max(7px,.95cqw)}.menu-copy h1{font-size:6.3cqw;margin:1.2cqw 0}.tagline{font-size:1.3cqw;margin:1cqw 0}.menu-actions{margin-top:1.2cqw;gap:.6cqw}.menu-actions button{font-size:1.45cqw;padding:.65cqw 1.3cqw;min-width:25cqw}.controls-note{font-size:1cqw;bottom:11%}.brand b{width:4cqw;height:4cqw;font-size:2.3cqw}.brand{font-size:1.1cqw;gap:1cqw}.menu-stamp{font-size:1.3cqw}.menu-topright{font-size:1.1cqw}}
 
-#menu{background:linear-gradient(90deg,#050304e8,transparent 65%)}#menu .menu-copy{top:6%;left:4%;width:38%}#menu .menu-copy h1{font-weight:900;font-size:4.4cqw;line-height:.92;margin:0 0 3cqw;letter-spacing:.01em;text-shadow:2px 0 #4fc7cc,-2px 1px #c22}#menu .menu-copy h1 em{color:#d31d25;font-size:5.1cqw}#menu .menu-actions{gap:.8cqw;margin:0}#menu .menu-actions button{background:#08020480;color:#e6dede;border:1px solid transparent;min-width:30cqw;font-weight:bold;font-size:1.4cqw;padding:.75cqw 1cqw}#menu .menu-actions button:hover,#menu .menu-actions .primary{border-color:#c12329;background:#3d090666;box-shadow:0 0 14px #a1141633}#menu .controls-note{left:4%;bottom:8%;font-size:.85cqw}#menu .screen-footer{bottom:3%}.night-picks{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.ai-row{display:grid;grid-template-columns:100px 1fr 38px;align-items:center;gap:10px;margin:20px 0}.ai-row input{width:100%;accent-color:#be3e3e}.ai-row output{color:#e7b270;font-size:22px}#customDialog,#nightDialog{width:590px}
+#menu{background:linear-gradient(90deg,#050304e8,transparent 65%)}#menu .menu-copy{top:6%;left:4%;width:38%}#menu .menu-copy h1{font-weight:900;font-size:4.4cqw;line-height:.92;margin:0 0 3cqw;letter-spacing:.01em;text-shadow:2px 0 #4fc7cc,-2px 1px #c22}#menu .menu-copy h1 em{color:#d31d25;font-size:5.1cqw}#menu .menu-actions{gap:.8cqw;margin:0}#menu .menu-actions button{background:#08020480;color:#e6dede;border:1px solid transparent;min-width:30cqw;font-weight:bold;font-size:1.4cqw;padding:.75cqw 1cqw}#menu .menu-actions button:hover,#menu .menu-actions .primary{border-color:#c12329;background:#3d090666;box-shadow:0 0 14px #a1141633}#menu .controls-note{left:4%;bottom:8%;font-size:.85cqw}#menu .screen-footer{bottom:3%}.ai-row{display:grid;grid-template-columns:100px 1fr 38px;align-items:center;gap:10px;margin:20px 0}.ai-row input{width:100%;accent-color:#be3e3e}.ai-row output{color:#e7b270;font-size:22px}#customDialog{width:590px}
 </style>
 </head>
 <body>
@@ -37,14 +37,14 @@ dialog{color:var(--paper);background:#101611;border:1px solid #7a8865;padding:30
   </section>
   <section id="menu" class="screen" hidden>
     <div class="menu-topright"><span class="status-dot"></span>CAM 01 / HALL<br>CA · 12 AM</div>
-    <div class="menu-copy"><h1>CINCO<br>NOITADAS<br>COM O<br><em>ALEXANDRE</em></h1><div class="menu-actions"><button id="newGame" class="primary">▶ INICIAR NOITE 1</button><button id="continueGame" disabled>CONTINUAR <span id="continueLabel">NOITE 1</span></button><button id="customButton">CUSTOM NIGHT</button><button data-test>SELECIONAR NOITE / TESTAR</button><button data-photos>EXTRAS · FOTOS</button></div></div>
+    <div class="menu-copy"><h1>CINCO<br>NOITADAS<br>COM O<br><em>ALEXANDRE</em></h1><div class="menu-actions"><button id="newGame" class="primary">▶ INICIAR NOITE 1</button><button id="continueGame" disabled>CONTINUAR <span id="continueLabel">NOITE 1</span></button><button id="customButton">CUSTOM NIGHT</button><button data-photos>EXTRAS · FOTOS</button></div></div>
     <div class="controls-note">A / D · PORTAS &nbsp; Q / E · LUZES &nbsp; ESPAÇO · CÂMERAS &nbsp; ESC · PAUSA</div><div class="screen-footer"><span id="completion">ARQUIVO 01 / 05</span><span id="saveStatus"></span></div>
   </section>
   <section id="hud" class="screen" hidden>
     <div class="hud-top"><div class="hud-location"><span class="status-dot"></span><span id="location">ESCRITÓRIO</span><br><span class="tiny muted">CA / UNIDADE 01</span></div><div class="clock"><strong id="time">12 AM</strong><small id="night">Noite 1</small></div></div>
     <button id="mutePhone">ENCERRAR LIGAÇÃO</button><div id="notice" role="status"></div><div id="caption" hidden></div>
     <div class="hud-bottom"><span class="muted">ENERGIA </span><span class="power-value" id="power">100%</span><div id="powerBar"><i></i></div><div class="usage"><span>CONSUMO</span><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-    <div class="hud-tools"><button id="soundButton" aria-pressed="false">SOM: ON</button><button id="pauseButton">PAUSA</button><button data-test>TESTAR</button></div>
+    <div class="hud-tools"><button id="soundButton" aria-pressed="false">SOM: ON</button><button id="pauseButton">PAUSA</button></div>
   </section>
   <div id="leftControls" class="door-control left" hidden><small>ESQUERDA</small><button id="doorL" aria-pressed="false">PORTA [A]</button><button id="lightL" aria-pressed="false">LUZ [Q]</button></div>
   <div id="rightControls" class="door-control right" hidden><small>DIREITA</small><button id="doorR" aria-pressed="false">PORTA [D]</button><button id="lightR" aria-pressed="false">LUZ [E]</button></div>
@@ -59,7 +59,6 @@ dialog{color:var(--paper);background:#101611;border:1px solid #7a8865;padding:30
 </main>
 <p id="rotateHint">Para jogar no celular, use a tela na horizontal.<br>As luzes acendem enquanto você segura o botão.</p>
 <dialog id="photoDialog" aria-labelledby="photoTitle"><button class="close-dialog" id="closePhotos" aria-label="Fechar fotos">×</button><h2 id="photoTitle">A turma, do seu jeito.</h2><p>Arraste suas fotos aqui ou escolha os arquivos. Use nomes como <strong>calebe_pose1.png</strong> e <strong>gustavo_jumpscare.jpg</strong>.</p><div id="dropArea"><label for="photoFiles">+ Escolher fotos da turma</label><input type="file" id="photoFiles" accept=".png,.jpg,.jpeg,.webp" multiple disabled></div><div id="assetList"></div><p id="assetStatus" role="status"></p><p class="muted tiny">Alexandre, Calebe, Vinicius e Willian: pose1, pose2, pose3 e jumpscare. Gustavo: pose1 e jumpscare. PNG, JPG, JPEG ou WEBP. As substituições duram nesta sessão; fotos ausentes são omitidas.</p><label><input id="reduceMotion" type="checkbox"> Reduzir tremores e flashes</label></dialog>
-<dialog id="nightDialog" aria-labelledby="nightTitle"><button class="close-dialog" id="closeNight">×</button><h2 id="nightTitle">Escolher turno</h2><p>Teste qualquer noite sem alterar seu progresso.</p><div class="night-picks" id="nightPicks"></div><button id="testGolden" class="primary">Noite 5 · testar Gustavo às 2 AM</button></dialog>
 <dialog id="customDialog" aria-labelledby="customTitle"><button class="close-dialog" id="closeCustom">×</button><h2 id="customTitle">Custom Night</h2><p>Defina a IA de cada um: 0 desliga, 20 é o máximo.</p><div id="aiControls"></div><label><input id="customGolden" type="checkbox"> Gustavo às 2 AM</label><div class="actions"><button id="allZero">Todos 0</button><button id="allTwenty">Todos 20</button><button id="playCustom" class="primary">Jogar</button></div></dialog>
 <script>
 'use strict';
@@ -72,6 +71,7 @@ const PESSOAS = {
   willian:   { pasta:"willian",   poses:3, personagem:"Foxy" },
   gustavo:   { pasta:"gustavo",   poses:1, personagem:"Golden Freddy" }
 };
+const TEMPO_CORRIDA_WILLIAN = 4.5;
 const HORA = 89, FIM = HORA * 6, SAVE_KEY = 'ca.noites-gulosas.v1';
 const NIVEIS = [null,{alexandre:0,vinicius:2,calebe:1,willian:0},{alexandre:0,vinicius:3,calebe:1,willian:1},{alexandre:2,vinicius:4,calebe:5,willian:3},{alexandre:6,vinicius:9,calebe:10,willian:6},{alexandre:20,vinicius:20,calebe:20,willian:20}];
 const INTERVALOS = {alexandre:3.02,vinicius:4.97,calebe:4.98,willian:5.01};
@@ -216,22 +216,22 @@ function pausa(value){if(!g||!['play','intro','golden','scare','crash'].includes
 // IA — oportunidades independentes, com D20 e aumento por horário.
 function nivel(p){if(g.customAI)return g.customAI[p];let v=NIVEIS[g.night][p],h=Math.floor(g.time/HORA);if(v===0)return 0;if(p==='vinicius')v+=Number(h>=2);if(p!=='alexandre')v+=Number(h>=3)+Number(h>=4);return Math.min(20,v);}
 function observado(loc){return g.monitor&&!g.offline&&g.cam===loc;}
-function mover(p,loc){const a=g.actors[p],old=a.loc;a.loc=loc;a.blocked=0;a.pose=1+(a.pose+Math.floor(Math.random()*2))%PESSOAS[p].poses;if(g.monitor&&(g.cam===old||g.cam===loc)){g.offline=true;g.static=.4;}if(p==='alexandre')som.play('laugh');else if(['L','R','2A','4A'].includes(loc))som.play('step');if(p==='vinicius'&&loc==='L')g.lights.L=false;}
-function entrar(p,side){const a=g.actors[p];a.loc='office';a.inside=g.monitor?30:1.2;g.jam[side]=true;g.lights[side]=false;som.play('step');}
+function mover(p,loc){const a=g.actors[p],old=a.loc;a.loc=loc;a.blocked=0;a.pose=1+(a.pose+Math.floor(Math.random()*2))%PESSOAS[p].poses;if(g.monitor&&(g.cam===old||g.cam===loc)){g.offline=true;g.static=.4;}somMovimento(p,loc);if(p==='alexandre')som.play('laugh');if(p==='vinicius'&&loc==='L')g.lights.L=false;}
+function entrar(p,side){const a=g.actors[p];a.loc='office';a.inside=g.monitor?30:1.2;g.jam[side]=true;g.lights[side]=false;somMovimento(p,'office');}
 function freddyMove(){const a=g.actors.alexandre;if(a.loc==='R'||a.loc==='4B'){if(!g.doors.R&&g.monitor&&!observado('4B'))entrar('alexandre','R');}else{const i=ROTA_ALEXANDRE.indexOf(a.loc);mover('alexandre',ROTA_ALEXANDRE[i+1]||'R');}}
 function oportunidade(p){
   const a=g.actors[p],ai=nivel(p);if(!ai||Math.floor(rand(1,21))>ai||a.loc==='office')return;
-  if(p==='willian'){if(g.foxyStage>=3||g.foxyStun>0)return;g.foxyStage++;if(g.foxyStage===3){g.foxyWait=25;mover(p,'gone');}return;}
+  if(p==='willian'){if(g.foxyStage>=3||g.foxyStun>0)return;g.foxyStage++;if(g.foxyStage===3){g.foxyWait=25;mover(p,'gone');}else somMovimento(p,'1C');return;}
   if(p==='alexandre'){if(observado(a.loc)||a.pending!==null)return;a.pending=Math.max(0,(1000-100*ai)/60);return;}
   if(a.loc==='L'||a.loc==='R'){if(!g.doors[a.loc])entrar(p,a.loc);return;}
   mover(p,pick(ROTAS[p][a.loc]||['1B']));
 }
-function foxyAttack(){if(g.doors.L){const loss=1+5*g.foxyHits;g.foxyHits++;g.power=Math.max(0,g.power-loss);som.play('bang');aviso('BATIDA NA ESQUERDA · −'+loss+'% DE ENERGIA');g.foxyStage=0;g.foxyRun=0;g.foxyWait=0;g.foxyStun=rand(3,8);g.actors.willian.loc='1C';if(g.power<=0)blackout();}else scare('willian');}
+function foxyAttack(){if(g.doors.L){const loss=1+5*g.foxyHits;g.foxyHits++;g.power=Math.max(0,g.power-loss);som.play('bang');aviso('BATIDA NA ESQUERDA · −'+loss+'% DE ENERGIA');g.foxyStage=0;g.foxyRun=0;g.foxyWait=0;g.foxyStun=rand(3,8);mover('willian','1C');if(g.power<=0)blackout();}else scare('willian');}
 function updateAI(dt){
   g.foxyStun=Math.max(0,g.foxyStun-dt);g.foxyRefresh-=dt;
   if(g.monitor&&g.cam==='1C'&&g.foxyStage<3&&g.foxyRefresh<=0){g.foxyStun=rand(.83,17.5);g.foxyRefresh=.1;}
-  if(g.foxyStage===3){g.foxyWait-=dt;if(g.foxyWait<=0||observado('2A')){g.foxyStage=4;g.foxyRun=1.67;som.play('run');g.footstep=0;mover('willian','2A');}}
-  if(g.foxyStage===4){g.foxyRun-=dt;g.footstep-=dt;if(g.footstep<=0){som.play('step');g.footstep=.23;}if(g.foxyRun<=0){foxyAttack();if(phase!=='play'||g.blackout)return;}}
+  if(g.foxyStage===3){g.foxyWait-=dt;if(g.foxyWait<=0||observado('2A')){g.foxyStage=4;g.foxyRun=TEMPO_CORRIDA_WILLIAN;som.play('run');g.footstep=0;mover('willian','2A');}}
+  if(g.foxyStage===4){g.foxyRun-=dt;if(g.foxyRun<=0){foxyAttack();if(phase!=='play'||g.blackout)return;}}
   for(const p of ['alexandre','vinicius','calebe','willian']){
     const a=g.actors[p];const side=a.loc==='L'?'L':a.loc==='R'||(p==='alexandre'&&a.loc==='4B')?'R':null;if(side&&g.doors[side]){a.blocked=(a.blocked||0)+dt;if(a.blocked>=2){a.pending=null;mover(p,p==='alexandre'?'4A':'1B');}continue;}a.blocked=0;
     if(a.loc==='office'){a.inside-=dt;if(a.inside<=0){scare(p);return;}continue;}
@@ -260,7 +260,7 @@ function updatePlay(dt){
   if(g.blackout){updateBlackout(dt);return;}
   updateAI(dt);if(phase!=='play'||g.blackout)return;
   
-  g.ambTimer-=dt;if(g.ambTimer<=0){if(g.actors.calebe.loc==='6'){if(observado('6'))som.play('pan');else som.tone(220,.2,.015,'triangle');}else if(g.monitor)som.noise(.2,.025,1600);else if(Math.random()<.12)audioFile(pick(['barulhoaleatorio.ogg','barulhoaleatorio2.ogg','barulhoaletorio3.ogg']),.2);g.ambTimer=rand(1.8,4);}
+  g.ambTimer-=dt;if(g.ambTimer<=0){if(g.actors.calebe.loc==='6'){if(observado('6'))som.play('pan');else som.tone(220,.2,.015,'triangle');}else if(g.monitor)som.noise(.2,.025,1600);g.ambTimer=rand(1.8,4);}
   g.eggCheck-=dt;if(g.eggCheck<=0){g.eggCheck=1;if(g.night>=3&&g.night<5&&!g.goldenDone&&g.monitor&&Math.random()<1/34464){golden();}}
 }
 function update(dt){
@@ -348,7 +348,7 @@ function cameraFallback(){
   if(c!=='1C'){
     const people=Object.entries(g.actors).filter(([p,a])=>p!=='willian'&&a.loc===c);
     people.forEach(([p,a],i)=>{const stage=c==='1A',h=stage?330:440,w=stage?210:260,x=stage?320+i*220:240+i*255;person(p,a.pose,x,stage?200:190,w,h,p==='alexandre'?.42:.7,1.5);});
-    if(c==='2A'&&g.foxyStage===4){const t=1-g.foxyRun/1.67;person('willian',3,510-t*330,210-t*150,110+t*550,220+t*600,.9,10);}
+    if(c==='2A'&&g.foxyStage===4){const t=1-g.foxyRun/TEMPO_CORRIDA_WILLIAN;person('willian',3,510-t*330,210-t*150,110+t*550,220+t*600,.9,10);}
   }
   ctx.restore();rect(0,0,W,H,'#6d935b0a');
 }
@@ -376,7 +376,7 @@ function syncUI(){
   if(g){for(const s of ['L','R']){ui['door'+s].classList.toggle('closed',g.doors[s]);ui['door'+s].setAttribute('aria-pressed',String(g.doors[s]));ui['door'+s].disabled=g.jam[s];ui['light'+s].classList.toggle('lit',g.lights[s]);ui['light'+s].setAttribute('aria-pressed',String(g.lights[s]));ui['light'+s].disabled=g.jam[s];}}
 }
 function hud(){
-  if(!g)return;ui.time.textContent=(Math.floor(g.time/HORA)||12)+' AM';ui.night.textContent=g.mode==='custom'?'Custom Night':('Noite '+g.night+(g.mode==='test'?' · TESTE':''));ui.power.textContent=Math.ceil(g.power)+'%';ui.power.style.color=g.power<20?'#e08c72':'';ui.powerBar.firstElementChild.style.width=g.power+'%';ui.location.textContent=g.blackout?'SEM ENERGIA':g.monitor?'CIRCUITO INTERNO':'ESCRITÓRIO';
+  if(!g)return;ui.time.textContent=(Math.floor(g.time/HORA)||12)+' AM';ui.night.textContent=g.mode==='custom'?'Custom Night':('Noite '+g.night);ui.power.textContent=Math.ceil(g.power)+'%';ui.power.style.color=g.power<20?'#e08c72':'';ui.powerBar.firstElementChild.style.width=g.power+'%';ui.location.textContent=g.blackout?'SEM ENERGIA':g.monitor?'CIRCUITO INTERNO':'ESCRITÓRIO';
   const bars=uso();[...document.querySelectorAll('.usage i')].forEach((e,i)=>{e.classList.toggle('on',!g.blackout&&i<bars);e.classList.toggle('hot',bars>=4);});
   ui.notice.textContent=g.noticeTime>0?g.notice:'';
   const phone=phase==='play'&&!g.blackout&&!g.phoneMuted&&callState&&callState.stage!=='done';
@@ -408,7 +408,7 @@ ui.game.addEventListener('pointermove',e=>{if(e.pointerType==='touch'||!canContr
 ui.game.addEventListener('pointerleave',()=>{panTarget=0;});
 window.addEventListener('pointerdown',()=>som.unlock(),{passive:true});
 window.addEventListener('keydown',e=>{
-  som.unlock();if(ui.photoDialog.open||ui.nightDialog.open||ui.customDialog.open||/INPUT|TEXTAREA/.test(e.target.tagName))return;
+  som.unlock();if(ui.photoDialog.open||ui.customDialog.open||/INPUT|TEXTAREA/.test(e.target.tagName))return;
   if(phase==='boot'){if(assetsReady&&(e.code==='Space'||e.code==='Enter')&&e.target.tagName!=='BUTTON'){e.preventDefault();setPhase('menu');}return;}
   if(e.code==='Escape'){if(['play','intro','golden','scare','crash'].includes(phase)){e.preventDefault();pausa(!paused);}return;}
   if(e.code==='KeyM'&&!e.repeat){som.mute();return;}
@@ -485,24 +485,55 @@ function office(){
   ctx.restore();
   if(g?.blackout){rect(0,0,W,H,'#000e');if(g.blackout.stage===1)person('alexandre',1,90,200,220,380,.8,0);}
 }
-function cameraRoom(){if(g.offline){rect(0,0,W,H,'#040706');staticNoise(.28);label('FORA DO AR',500,310,46,'#d1d6c8','center');label('SINAL INTERROMPIDO',500,355,20,'#929e8e','center');label('Selecione outra câmera para restabelecer o sinal.',500,395,14,'#929e8e','center');return;}const atlas=cenarios.cameras;if(!atlas||g.cam==='6'){cameraFallback();return;}const tiles={'1A':0,'1B':1,'1C':2,'2A':3,'2B':4,'3':6,'4A':8,'4B':4,'5':5,'7':7},tile=tiles[g.cam],tw=atlas.naturalWidth/3,th=atlas.naturalHeight/3;ctx.drawImage(atlas,(tile%3)*tw,Math.floor(tile/3)*th,tw,th,0,0,W,H);if(g.cam==='1C'){if(g.foxyStage<3)person('willian',g.foxyStage+1,300,220,350,420,1,0);else label('JÁ VOLTO.',470,470,24,'#c1c0a6','center');}else{const people=Object.entries(g.actors).filter(([p,a])=>p!=='willian'&&a.loc===g.cam);people.forEach(([p,a],i)=>person(p,a.pose,220+i*255,190,280,440,1,0));if(g.cam==='2A'&&g.foxyStage===4){const t=1-g.foxyRun/1.67;person('willian',3,450-t*200,200-t*100,180+t*500,300+t*450,1,0);}}rect(0,0,W,H,'#00160818');}
+function cameraRoom(){if(g.offline){rect(0,0,W,H,'#040706');staticNoise(.28);label('FORA DO AR',500,310,46,'#d1d6c8','center');label('SINAL INTERROMPIDO',500,355,20,'#929e8e','center');label('Selecione outra câmera para restabelecer o sinal.',500,395,14,'#929e8e','center');return;}const atlas=cenarios.cameras;if(!atlas||g.cam==='6'){cameraFallback();return;}const tiles={'1A':0,'1B':1,'1C':2,'2A':3,'2B':4,'3':6,'4A':8,'4B':8,'5':5,'7':7},tile=tiles[g.cam],tw=atlas.naturalWidth/3,th=atlas.naturalHeight/3;const closeEast=g.cam==='4B';ctx.drawImage(atlas,(tile%3)*tw+(closeEast?tw*.28:0),Math.floor(tile/3)*th+(closeEast?th*.12:0),tw*(closeEast?.72:1),th*(closeEast?.88:1),0,0,W,H);if(g.cam==='1C'){if(g.foxyStage<3)person('willian',g.foxyStage+1,300,220,350,420,1,0);else label('JÁ VOLTO.',470,470,24,'#c1c0a6','center');}else{const people=Object.entries(g.actors).filter(([p,a])=>p!=='willian'&&a.loc===g.cam);people.forEach(([p,a],i)=>person(p,a.pose,220+i*255,190,280,440,1,0));if(g.cam==='2A'&&g.foxyStage===4){const t=1-g.foxyRun/TEMPO_CORRIDA_WILLIAN;person('willian',3,450-t*200,200-t*100,180+t*500,300+t*450,1,0);}}rect(0,0,W,H,'#00160818');}
 const TRANSCRICOES={
 1:'Salve paizao, bem vindo ao noites gulosas, cara, tu ta fod#do aqui, tem nem oq te falar, quis o emprego pq quis, agr aguenta calaio, seguinte irmão, o Vini e o Calebe guloso vão querer entrar na tua sala, eles querem fazer, coisas, não deixe eles entrar, se n, já sabe...',
 2:'Salve mano, que bom que tu tankou a primeira noite, mas burrice tua ter voltado, ta, sobre oq vc precisa saber dessa noite, ehhh, ta, o willian sai essa noite, ele é meio ligeirinho, ele vai correndo até tua sala, se vc não fechar a porta a tempo, sinto muito, mas ele vai te pegar... é isso, tchau obrigado',
 3:'Salve meu bom, vem sempre aqui? Ouha, guentou 2 dia já com esses maluco? boa menó, tu quer mesmo esse pastel e coxinha no final da semana, pq a gente n tem 1 real pra vc pia, podia ter ficado em casa, azar o teu KKKKK, então, sobre hoje, tem o alexandre guloso agora, toma cuidado com ele, ele é bem discreto, ele fica na tua câmera do lado direito, se ele tiver ali, independente que ele não ta na tua sala, feche a porta, ele vai ficar ali na maldade, esperando pra rouba tua makita... Pera oq é isso, ah não, eles me acharam, filha da...'
 };
+const AUDIO_VERSOES={"ligacaonoite1.ogg": "87802b3d6a71", "ligacaonoite2.ogg": "7a039f5d9afc", "ligacaonoite3.ogg": "12d69ecf3907", "williancorrendo.ogg": "0f8d5f4e94e1"};
 const media=new Set();let callState=null;
-function audioFile(path,volume=.65,group='fx',loop=false,onend=null){const a=new Audio('audio/'+path);a.volume=volume;a.muted=som.muted;a.loop=loop;const item={a,group,held:false};media.add(item);a.onended=()=>{media.delete(item);if(onend)onend();};a.onerror=()=>{media.delete(item);if(onend)onend();};a.play().catch(()=>{item.held=true;});return a;}
+function audioFile(path,volume=.65,group='fx',loop=false,onend=null){const a=new Audio('audio/'+path+(AUDIO_VERSOES[path]?'?v='+AUDIO_VERSOES[path]:''));a.volume=volume;a.muted=som.muted;a.loop=loop;const item={a,path,group,held:false};media.add(item);a.onended=()=>{media.delete(item);if(onend)onend();};a.onerror=()=>{media.delete(item);if(onend)onend();};a.play().catch(()=>{item.held=true;});return a;}
 function stopCall(){for(const item of [...media])if(item.group==='phone'){item.a.onended=null;item.a.pause();media.delete(item);}if(callState)callState.stage='done';}
 function stopMedia(){for(const item of media){item.a.onended=null;item.a.pause();}media.clear();callState=null;}
-const synthPlay=som.play.bind(som);som.play=function(what){const files={scare:'jumpscare.mp3',run:'williancorrendo.ogg',step:pick(['passos.ogg','passos2.ogg','passos3.ogg']),pan:'cameradacozinhacomocalebe.mp3'};if(files[what]){if(what==='pan'&&[...media].some(i=>i.a.src.endsWith(files[what])))return;audioFile(files[what],what==='scare'?.8:.55,what==='scare'?'scare':'fx');return;}synthPlay(what);};
-function callFinish(){if(!callState||g.phoneMuted||phase!=='play')return;if(g.night===3){callState.stage='final';audioFile('jumpscare.mp3',.55,'phone',false,()=>{if(g.phoneMuted||!callState||callState.stage==='done')return;audioFile('cameradacozinhacomocalebe.mp3',.6,'phone',false,()=>{if(callState)callState.stage='done';});});}else callState.stage='done';}
-function updateMedia(){const active=phase==='play'&&!paused&&!document.hidden&&!g.blackout;for(const item of [...media]){const allow=!paused&&!document.hidden&&(item.group==='scare'?phase==='scare':active);item.a.muted=som.muted;if(!allow&&!item.a.paused){item.a.pause();item.held=true;}else if(allow&&item.held){item.held=false;item.a.play().catch(()=>{});}}if(!g)return;if(['menu','over','win'].includes(phase)){if(media.size)stopMedia();return;}if(!active)return;if(g.blackout||g.phoneMuted){stopCall();return;}if(g.night>3||g.mode==='custom')return;if(!callState){if(g.time>7){callState={stage:'done'};return;}callState={stage:'ring',start:g.time,voice:null};callState.ring=audioFile('somdeligacao.mp3',.55,'phone',true);}if(callState.stage==='ring'&&g.time>=6){callState.ring.pause();for(const item of [...media])if(item.a===callState.ring)media.delete(item);callState.stage='voice';callState.voice=audioFile('ligacaonoite'+g.night+'.ogg',.85,'phone',false,callFinish);}}
-function phoneCaption(){if(!callState)return '';if(callState.stage==='ring')return '☎ CHAMADA RECEBIDA';if(callState.stage==='final')return '☎ [grito e barulho de panelas na ligação]';const a=callState.voice,words=TRANSCRICOES[g.night].split(' '),size=18,groups=Math.ceil(words.length/size),ratio=a&&Number.isFinite(a.duration)&&a.duration>0?a.currentTime/a.duration:0,index=Math.min(groups-1,Math.floor(ratio*groups));return '☎ '+words.slice(index*size,(index+1)*size).join(' ');}
-function showNightDialog(){if(g&&phase==='play')pausa(true);ui.nightDialog.showModal();}
-for(const b of document.querySelectorAll('[data-test]'))b.onclick=showNightDialog;
-for(let n=1;n<=5;n++){const b=document.createElement('button');b.textContent='Noite '+n;b.onclick=()=>{ui.nightDialog.close();startNight(n,{mode:'test'});cameraUI();};ui.nightPicks.append(b);}
-ui.closeNight.onclick=()=>ui.nightDialog.close();ui.testGolden.onclick=()=>{ui.nightDialog.close();startNight(5,{mode:'test',time:177.5});cameraUI();};
+const SONS_MOVIMENTO=['barulhoaleatorio.ogg','barulhoaleatorio2.ogg','passos.ogg','passos2.ogg','passos3.ogg'];
+function somMovimento(p,loc){
+  const volume=['L','R','office'].includes(loc)?1:['2B','4B'].includes(loc)?.75:.38;
+  audioFile(pick(SONS_MOVIMENTO),volume,'movement');
+}
+function pararGrupo(group){for(const item of [...media])if(item.group===group){item.a.onended=null;item.a.onerror=null;item.a.pause();media.delete(item);}}
+const synthPlay=som.play.bind(som);
+som.play=function(what){
+  if(what==='run'){pararGrupo('willian-run');audioFile('williancorrendo.ogg',1,'willian-run',true);return;}
+  const files={scare:'jumpscare.mp3',step:pick(['passos.ogg','passos2.ogg','passos3.ogg']),pan:'cameradacozinhacomocalebe.mp3'};
+  if(files[what]){if(what==='pan'&&[...media].some(i=>i.path===files[what]))return;audioFile(files[what],what==='scare'?.8:.55,what==='scare'?'scare':'fx');return;}
+  synthPlay(what);
+};
+function callFinish(){
+  if(!callState||g.phoneMuted||phase!=='play')return;
+  if(g.night===3){callState.stage='final';audioFile('cameradacozinhacomocalebe.mp3',.6,'phone',false,()=>{if(callState)callState.stage='done';});}
+  else callState.stage='done';
+}
+function updateMedia(){
+  const active=!!g&&phase==='play'&&!paused&&!document.hidden&&!g.blackout;
+  const alexandreNoCanto=!!g&&phase==='play'&&!g.blackout&&g.actors.alexandre.loc==='4B';
+  if(!alexandreNoCanto)pararGrupo('alexandre-alert');
+  else if(active&&![...media].some(i=>i.group==='alexandre-alert'))audioFile('barulhoaletorio3.ogg',.9,'alexandre-alert',true);
+  if(!g||phase!=='play'||g.blackout||g.foxyStage!==4)pararGrupo('willian-run');
+  for(const item of [...media]){
+    const allow=!paused&&!document.hidden&&(item.group==='scare'?phase==='scare':active);
+    item.a.muted=som.muted;
+    if(!allow&&!item.a.paused){item.a.pause();item.held=true;}
+    else if(allow&&item.held){item.held=false;item.a.play().catch(()=>{});}
+  }
+  if(!g)return;
+  if(['menu','over','win'].includes(phase)){if(media.size)stopMedia();return;}
+  if(g.blackout||g.phoneMuted){stopCall();return;}
+  if(!active||g.night>3||g.mode==='custom')return;
+  if(!callState){if(g.time>7){callState={stage:'done'};return;}callState={stage:'ring',start:g.time,voice:null};callState.ring=audioFile('somdeligacao.mp3',.55,'phone',true);}
+  if(callState.stage==='ring'&&g.time>=6){callState.ring.pause();for(const item of [...media])if(item.a===callState.ring)media.delete(item);callState.stage='voice';callState.voice=audioFile('ligacaonoite'+g.night+'.ogg',.85,'phone',false,callFinish);}
+}
+function phoneCaption(){if(!callState)return '';if(callState.stage==='ring')return '☎ CHAMADA RECEBIDA';if(callState.stage==='final')return '☎ [barulho de panelas na ligação]';const a=callState.voice,words=TRANSCRICOES[g.night].split(' '),size=18,groups=Math.ceil(words.length/size),ratio=a&&Number.isFinite(a.duration)&&a.duration>0?a.currentTime/a.duration:0,index=Math.min(groups-1,Math.floor(ratio*groups));return '☎ '+words.slice(index*size,(index+1)*size).join(' ');}
 ui.customButton.onclick=()=>ui.customDialog.showModal();ui.closeCustom.onclick=()=>ui.customDialog.close();
 const aiInputs={};for(const p of ['alexandre','calebe','vinicius','willian']){const row=document.createElement('label');row.className='ai-row';const title=document.createElement('span');title.textContent=nome(p);const input=document.createElement('input');input.type='range';input.min=0;input.max=20;input.step=1;input.value=5;input.setAttribute('aria-label','IA '+nome(p));const out=document.createElement('output');out.textContent='5';input.oninput=()=>out.textContent=input.value;aiInputs[p]=input;row.append(title,input,out);ui.aiControls.append(row);}
 function allAI(n){for(const input of Object.values(aiInputs)){input.value=n;input.oninput();}}
