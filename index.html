@@ -25,6 +25,7 @@ dialog{color:var(--paper);background:#101611;border:1px solid #7a8865;padding:30
 @container(max-width:900px){.menu-copy{top:18%}.eyebrow{font-size:max(7px,.95cqw)}.menu-copy h1{font-size:6.3cqw;margin:1.2cqw 0}.tagline{font-size:1.3cqw;margin:1cqw 0}.menu-actions{margin-top:1.2cqw;gap:.6cqw}.menu-actions button{font-size:1.45cqw;padding:.65cqw 1.3cqw;min-width:25cqw}.controls-note{font-size:1cqw;bottom:11%}.brand b{width:4cqw;height:4cqw;font-size:2.3cqw}.brand{font-size:1.1cqw;gap:1cqw}.menu-stamp{font-size:1.3cqw}.menu-topright{font-size:1.1cqw}}
 
 #menu{background:linear-gradient(90deg,#050304e8,transparent 65%)}#menu .menu-copy{top:6%;left:4%;width:38%}#menu .menu-copy h1{font-weight:900;font-size:4.4cqw;line-height:.92;margin:0 0 3cqw;letter-spacing:.01em;text-shadow:2px 0 #4fc7cc,-2px 1px #c22}#menu .menu-copy h1 em{color:#d31d25;font-size:5.1cqw}#menu .menu-actions{gap:.8cqw;margin:0}#menu .menu-actions button{background:#08020480;color:#e6dede;border:1px solid transparent;min-width:30cqw;font-weight:bold;font-size:1.4cqw;padding:.75cqw 1cqw}#menu .menu-actions button:hover,#menu .menu-actions .primary{border-color:#c12329;background:#3d090666;box-shadow:0 0 14px #a1141633}#menu .controls-note{left:4%;bottom:8%;font-size:.85cqw}#menu .screen-footer{bottom:3%}.ai-row{display:grid;grid-template-columns:100px 1fr 38px;align-items:center;gap:10px;margin:20px 0}.ai-row input{width:100%;accent-color:#be3e3e}.ai-row output{color:#e7b270;font-size:22px}#customDialog{width:590px}
+.night-picks{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}#nightDialog{width:590px}
 </style>
 </head>
 <body>
@@ -60,6 +61,7 @@ dialog{color:var(--paper);background:#101611;border:1px solid #7a8865;padding:30
 <p id="rotateHint">Para jogar no celular, use a tela na horizontal.<br>As luzes acendem enquanto você segura o botão.</p>
 <dialog id="photoDialog" aria-labelledby="photoTitle"><button class="close-dialog" id="closePhotos" aria-label="Fechar fotos">×</button><h2 id="photoTitle">A turma, do seu jeito.</h2><p>Arraste suas fotos aqui ou escolha os arquivos. Use nomes como <strong>calebe_pose1.png</strong> e <strong>gustavo_jumpscare.jpg</strong>.</p><div id="dropArea"><label for="photoFiles">+ Escolher fotos da turma</label><input type="file" id="photoFiles" accept=".png,.jpg,.jpeg,.webp" multiple disabled></div><div id="assetList"></div><p id="assetStatus" role="status"></p><p class="muted tiny">Alexandre, Calebe, Vinicius e Willian: pose1, pose2, pose3 e jumpscare. Gustavo: pose1 e jumpscare. PNG, JPG, JPEG ou WEBP. As substituições duram nesta sessão; fotos ausentes são omitidas.</p><label><input id="reduceMotion" type="checkbox"> Reduzir tremores e flashes</label></dialog>
 <dialog id="customDialog" aria-labelledby="customTitle"><button class="close-dialog" id="closeCustom">×</button><h2 id="customTitle">Custom Night</h2><p>Defina a IA de cada um: 0 desliga, 20 é o máximo.</p><div id="aiControls"></div><label><input id="customGolden" type="checkbox"> Gustavo às 2 AM</label><div class="actions"><button id="allZero">Todos 0</button><button id="allTwenty">Todos 20</button><button id="playCustom" class="primary">Jogar</button></div></dialog>
+<dialog id="nightDialog" aria-labelledby="nightTitle"><button class="close-dialog" id="closeNight" aria-label="Fechar seleção de noites">×</button><h2 id="nightTitle">Escolher turno</h2><p>Teste qualquer noite sem alterar seu progresso.</p><div class="night-picks" id="nightPicks"></div><button id="testGolden" class="primary">Noite 5 · testar Gustavo às 2 AM</button></dialog>
 <script>
 'use strict';
 // CONFIG — intervalos e rolagem de IA baseados no original; noites adaptadas ao pedido.
@@ -409,7 +411,7 @@ ui.game.addEventListener('pointermove',e=>{if(e.pointerType==='touch'||!canContr
 ui.game.addEventListener('pointerleave',()=>{panTarget=0;});
 window.addEventListener('pointerdown',()=>som.unlock(),{passive:true});
 window.addEventListener('keydown',e=>{
-  som.unlock();if(ui.photoDialog.open||ui.customDialog.open||/INPUT|TEXTAREA/.test(e.target.tagName))return;
+  som.unlock();if(ui.photoDialog.open||ui.nightDialog.open||ui.customDialog.open||/INPUT|TEXTAREA/.test(e.target.tagName))return;
   if(phase==='boot'){if(assetsReady&&(e.code==='Space'||e.code==='Enter')&&e.target.tagName!=='BUTTON'){e.preventDefault();setPhase('menu');}return;}
   if(e.code==='Escape'){if(['play','intro','golden','scare','crash'].includes(phase)){e.preventDefault();pausa(!paused);}return;}
   if(e.code==='KeyM'&&!e.repeat){som.mute();return;}
@@ -535,6 +537,17 @@ function updateMedia(){
   if(callState.stage==='ring'&&g.time>=6){callState.ring.pause();for(const item of [...media])if(item.a===callState.ring)media.delete(item);callState.stage='voice';callState.voice=audioFile('ligacaonoite'+g.night+(g.night===4?'.mp3':'.ogg'),.85,'phone',false,callFinish);}
 }
 function phoneCaption(){if(!callState)return '';if(callState.stage==='ring')return '☎ CHAMADA RECEBIDA';if(callState.stage==='final')return '☎ [barulho de panelas na ligação]';if(!TRANSCRICOES[g.night])return '☎ LIGAÇÃO DA NOITE '+g.night;const a=callState.voice,words=TRANSCRICOES[g.night].split(' '),size=18,groups=Math.ceil(words.length/size),ratio=a&&Number.isFinite(a.duration)&&a.duration>0?a.currentTime/a.duration:0,index=Math.min(groups-1,Math.floor(ratio*groups));return '☎ '+words.slice(index*size,(index+1)*size).join(' ');}
+ui.customButton.insertAdjacentHTML('afterend','<button data-test>SELECIONAR NOITE / TESTAR</button>');
+ui.pauseButton.insertAdjacentHTML('afterend','<button data-test>TESTAR</button>');
+function showNightDialog(){if(g&&phase==='play')pausa(true);ui.nightDialog.showModal();}
+for(const b of document.querySelectorAll('[data-test]'))b.onclick=showNightDialog;
+for(let n=1;n<=5;n++){
+  const b=document.createElement('button');b.textContent='Noite '+n;
+  b.onclick=()=>{ui.nightDialog.close();startNight(n,{mode:'test'});cameraUI();};
+  ui.nightPicks.append(b);
+}
+ui.closeNight.onclick=()=>ui.nightDialog.close();
+ui.testGolden.onclick=()=>{ui.nightDialog.close();startNight(5,{mode:'test',time:2*HORA-.5});cameraUI();};
 ui.customButton.onclick=()=>ui.customDialog.showModal();ui.closeCustom.onclick=()=>ui.customDialog.close();
 const aiInputs={};for(const p of ['alexandre','calebe','vinicius','willian']){const row=document.createElement('label');row.className='ai-row';const title=document.createElement('span');title.textContent=nome(p);const input=document.createElement('input');input.type='range';input.min=0;input.max=20;input.step=1;input.value=5;input.setAttribute('aria-label','IA '+nome(p));const out=document.createElement('output');out.textContent='5';input.oninput=()=>out.textContent=input.value;aiInputs[p]=input;row.append(title,input,out);ui.aiControls.append(row);}
 function allAI(n){for(const input of Object.values(aiInputs)){input.value=n;input.oninput();}}
