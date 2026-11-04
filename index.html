@@ -72,7 +72,8 @@ const PESSOAS = {
   gustavo:   { pasta:"gustavo",   poses:1, personagem:"Golden Freddy" }
 };
 const TEMPO_CORRIDA_WILLIAN = 4.5;
-const HORA = 89, FIM = HORA * 6, SAVE_KEY = 'ca.noites-gulosas.v1';
+const VELOCIDADE_NOITE = 2;
+const HORA = 89 / VELOCIDADE_NOITE, FIM = HORA * 6, SAVE_KEY = 'ca.noites-gulosas.v1';
 const NIVEIS = [null,{alexandre:0,vinicius:2,calebe:1,willian:0},{alexandre:0,vinicius:3,calebe:1,willian:1},{alexandre:2,vinicius:4,calebe:5,willian:3},{alexandre:6,vinicius:9,calebe:10,willian:6},{alexandre:20,vinicius:20,calebe:20,willian:20}];
 const INTERVALOS = {alexandre:3.02,vinicius:4.97,calebe:4.98,willian:5.01};
 const CAMERAS = [
@@ -247,7 +248,7 @@ function updatePlay(dt){
   const untilGolden=g.goldenEnabled&&!g.goldenDone?2*HORA-g.time:Infinity;
   const step=Math.min(dt,Math.max(0,untilGolden));
   g.time+=step;
-  if(!g.blackout)g.power=Math.max(0,g.power-step*(.1*uso()+[0,0,.1/6,.1/5,.1/4,.1/3][g.night]));
+  if(!g.blackout)g.power=Math.max(0,g.power-step*VELOCIDADE_NOITE*(.1*uso()+[0,0,.1/6,.1/5,.1/4,.1/3][g.night]));
   if(untilGolden<=dt){g.time=2*HORA;golden();return;}
   if(g.time>=FIM){g.time=FIM;victory();return;}
   if(g.power<=0&&!g.blackout)blackout();
