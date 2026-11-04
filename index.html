@@ -491,7 +491,7 @@ const TRANSCRICOES={
 2:'Salve mano, que bom que tu tankou a primeira noite, mas burrice tua ter voltado, ta, sobre oq vc precisa saber dessa noite, ehhh, ta, o willian sai essa noite, ele é meio ligeirinho, ele vai correndo até tua sala, se vc não fechar a porta a tempo, sinto muito, mas ele vai te pegar... é isso, tchau obrigado',
 3:'Salve meu bom, vem sempre aqui? Ouha, guentou 2 dia já com esses maluco? boa menó, tu quer mesmo esse pastel e coxinha no final da semana, pq a gente n tem 1 real pra vc pia, podia ter ficado em casa, azar o teu KKKKK, então, sobre hoje, tem o alexandre guloso agora, toma cuidado com ele, ele é bem discreto, ele fica na tua câmera do lado direito, se ele tiver ali, independente que ele não ta na tua sala, feche a porta, ele vai ficar ali na maldade, esperando pra rouba tua makita... Pera oq é isso, ah não, eles me acharam, filha da...'
 };
-const AUDIO_VERSOES={"ligacaonoite1.ogg": "87802b3d6a71", "ligacaonoite2.ogg": "7a039f5d9afc", "ligacaonoite3.ogg": "12d69ecf3907", "williancorrendo.ogg": "0f8d5f4e94e1"};
+const AUDIO_VERSOES={"ligacaonoite1.ogg":"eb9cce370689","ligacaonoite2.ogg":"8eb7c5e74751","ligacaonoite3.ogg":"6ce3d769f7ea","ligacaonoite4.mp3":"3ec2dc857e34","williancorrendo.ogg":"0f8d5f4e94e1"};
 const media=new Set();let callState=null;
 function audioFile(path,volume=.65,group='fx',loop=false,onend=null){const a=new Audio('audio/'+path+(AUDIO_VERSOES[path]?'?v='+AUDIO_VERSOES[path]:''));a.volume=volume;a.muted=som.muted;a.loop=loop;const item={a,path,group,held:false};media.add(item);a.onended=()=>{media.delete(item);if(onend)onend();};a.onerror=()=>{media.delete(item);if(onend)onend();};a.play().catch(()=>{item.held=true;});return a;}
 function stopCall(){for(const item of [...media])if(item.group==='phone'){item.a.onended=null;item.a.pause();media.delete(item);}if(callState)callState.stage='done';}
@@ -529,11 +529,11 @@ function updateMedia(){
   if(!g)return;
   if(['menu','over','win'].includes(phase)){if(media.size)stopMedia();return;}
   if(g.blackout||g.phoneMuted){stopCall();return;}
-  if(!active||g.night>3||g.mode==='custom')return;
+  if(!active||g.night>4||g.mode==='custom')return;
   if(!callState){if(g.time>7){callState={stage:'done'};return;}callState={stage:'ring',start:g.time,voice:null};callState.ring=audioFile('somdeligacao.mp3',.55,'phone',true);}
-  if(callState.stage==='ring'&&g.time>=6){callState.ring.pause();for(const item of [...media])if(item.a===callState.ring)media.delete(item);callState.stage='voice';callState.voice=audioFile('ligacaonoite'+g.night+'.ogg',.85,'phone',false,callFinish);}
+  if(callState.stage==='ring'&&g.time>=6){callState.ring.pause();for(const item of [...media])if(item.a===callState.ring)media.delete(item);callState.stage='voice';callState.voice=audioFile('ligacaonoite'+g.night+(g.night===4?'.mp3':'.ogg'),.85,'phone',false,callFinish);}
 }
-function phoneCaption(){if(!callState)return '';if(callState.stage==='ring')return '☎ CHAMADA RECEBIDA';if(callState.stage==='final')return '☎ [barulho de panelas na ligação]';const a=callState.voice,words=TRANSCRICOES[g.night].split(' '),size=18,groups=Math.ceil(words.length/size),ratio=a&&Number.isFinite(a.duration)&&a.duration>0?a.currentTime/a.duration:0,index=Math.min(groups-1,Math.floor(ratio*groups));return '☎ '+words.slice(index*size,(index+1)*size).join(' ');}
+function phoneCaption(){if(!callState)return '';if(callState.stage==='ring')return '☎ CHAMADA RECEBIDA';if(callState.stage==='final')return '☎ [barulho de panelas na ligação]';if(!TRANSCRICOES[g.night])return '☎ LIGAÇÃO DA NOITE '+g.night;const a=callState.voice,words=TRANSCRICOES[g.night].split(' '),size=18,groups=Math.ceil(words.length/size),ratio=a&&Number.isFinite(a.duration)&&a.duration>0?a.currentTime/a.duration:0,index=Math.min(groups-1,Math.floor(ratio*groups));return '☎ '+words.slice(index*size,(index+1)*size).join(' ');}
 ui.customButton.onclick=()=>ui.customDialog.showModal();ui.closeCustom.onclick=()=>ui.customDialog.close();
 const aiInputs={};for(const p of ['alexandre','calebe','vinicius','willian']){const row=document.createElement('label');row.className='ai-row';const title=document.createElement('span');title.textContent=nome(p);const input=document.createElement('input');input.type='range';input.min=0;input.max=20;input.step=1;input.value=5;input.setAttribute('aria-label','IA '+nome(p));const out=document.createElement('output');out.textContent='5';input.oninput=()=>out.textContent=input.value;aiInputs[p]=input;row.append(title,input,out);ui.aiControls.append(row);}
 function allAI(n){for(const input of Object.values(aiInputs)){input.value=n;input.oninput();}}
