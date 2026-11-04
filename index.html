@@ -380,7 +380,7 @@ function hud(){
   const bars=uso();[...document.querySelectorAll('.usage i')].forEach((e,i)=>{e.classList.toggle('on',!g.blackout&&i<bars);e.classList.toggle('hot',bars>=4);});
   ui.notice.textContent=g.noticeTime>0?g.notice:'';
   const phone=phase==='play'&&!g.blackout&&!g.phoneMuted&&callState&&callState.stage!=='done';
-  ui.caption.hidden=!phone;ui.mutePhone.hidden=!phone;if(phone)ui.caption.textContent=phoneCaption();
+  ui.caption.hidden=true;ui.mutePhone.hidden=!phone;
   if(phase==='crash')ui.crashCountdown.textContent='Retomando em '+Math.max(1,Math.ceil(4-phaseTime))+' segundo(s).';
   for(const s of ['L','R']){ui['light'+s].classList.toggle('lit',g.lights[s]);ui['light'+s].setAttribute('aria-pressed',String(g.lights[s]));ui['door'+s].disabled=g.jam[s];ui['light'+s].disabled=g.jam[s];}
 }
